@@ -6,6 +6,11 @@ import Crew from '~/components/Crew'
 import Grid, { Row } from '~/components/Grid'
 import { useInferredRouteData } from '~/remix-extended'
 import { Tmdb } from 'tmdb'
+import { PosterImg } from '~/ui/Img'
+
+import styles from 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
+
+export const links = () => [{ rel: 'stylesheet', href: styles }]
 
 export const loader = async ({ params }: LoaderArgs) => {
   invariant(params.movieId, 'expected params.movieId')
@@ -18,7 +23,7 @@ export const loader = async ({ params }: LoaderArgs) => {
   return { details, credits, recommendations }
 }
 
-export default function Index() {
+export default function MoviePage() {
   const { details, credits, recommendations } =
     useInferredRouteData<typeof loader>()
 
@@ -28,10 +33,11 @@ export default function Index() {
         <div className="grid lg:grid-cols-4">
           <div className="md:border-r border-gray-700 relative mt-1">
             <div className="p-4">
-              <img
-                src={'https://image.tmdb.org/t/p/w400/' + details.poster_path}
-                className={classNames(['w-full h-auto'])}
+              <PosterImg
+                src={details.poster_path}
                 alt={details.title}
+                size="w500"
+                innerZoom
               />
             </div>
           </div>

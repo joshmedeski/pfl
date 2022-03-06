@@ -24,6 +24,12 @@ import TvShow from "./tvShow"
 import TvShows from "./tvShows"
 import WatchProviders from "./watchProviders"
 
+export * from "./configuration/api"
+export * from "./configuration/jobs"
+export * from "./configuration/countries"
+export * from "./configuration/languages"
+export * from "./configuration/primary_translations"
+
 export interface PaginatedResponse<T> {
   page: number
   results: T[]

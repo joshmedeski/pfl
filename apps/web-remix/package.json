@@ -19,15 +19,18 @@
     "@remix-run/serve": "^1.1.1",
     "@remix-run/server-runtime": "^1.2.3",
     "@remix-run/vercel": "^1.1.1",
+    "@types/react-inner-image-zoom": "^3.0.0",
     "axios": "^0.25.0",
     "classnames": "^2.3.1",
     "dotenv": "^14.2.0",
     "moviestmdb": "^2.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-inner-image-zoom": "^3.0.0",
     "remix": "^1.1.1",
     "tiny-invariant": "^1.2.0",
-    "tmdb": "workspace:*"
+    "tmdb": "workspace:*",
+    "ui": "workspace:*"
   },
   "devDependencies": {
     "@babel/core": "^7.16.10",
