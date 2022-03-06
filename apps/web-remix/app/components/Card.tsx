@@ -24,7 +24,6 @@ const Card: React.FC<CardProps> = ({ img, title, meta, to, forcedWidth }) => {
         'shadow-lg shadow-gray-300/20 hover:shadow-gray-300/40',
         'dark:shadow-gray-700/20 dark:hover:shadow-gray-700/40',
         'transition',
-        'border border-1 border-gray-200',
         'dark:border-gray-700',
         { 'rounded-b-xl': !!img },
         { 'rounded-xl': !img },
@@ -33,10 +32,10 @@ const Card: React.FC<CardProps> = ({ img, title, meta, to, forcedWidth }) => {
       ])}
     >
       {!!img && (
-        <div className={classNames(['border-b border-gray-700'])}>
+        <div className={classNames([''])}>
           <img
-            src={`https://image.tmdb.org/t/p/w154/` + img.src}
-            className={classNames(['w-full h-auto', 'border border-gray-700'])}
+            src={`https://image.tmdb.org/t/p/w400/` + img.src}
+            className={classNames(['w-full h-auto', ''])}
             alt={title}
           />
         </div>
@@ -44,14 +43,14 @@ const Card: React.FC<CardProps> = ({ img, title, meta, to, forcedWidth }) => {
 
       <div
         className={classNames([
-          'p-2',
+          'p-3',
           { 'grid place-content-center h-full text-center': !img }
         ])}
       >
         <p
           className={classNames([
             'font-bold overflow-hidden mb-2',
-            'whitespace-nowrap text-ellipsis',
+            'text-lg whitespace-nowrap text-ellipsis',
             'leading-none'
           ])}
         >
@@ -59,9 +58,7 @@ const Card: React.FC<CardProps> = ({ img, title, meta, to, forcedWidth }) => {
         </p>
 
         {!!meta && (
-          <p className="text-gray-400 dark:text-gray-600 leading-none">
-            {meta}
-          </p>
+          <p className="font-lg text-neutral-500 leading-none">{meta}</p>
         )}
       </div>
     </Link>

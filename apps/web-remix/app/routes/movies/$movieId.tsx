@@ -17,6 +17,8 @@ export const loader = async ({ params }: LoaderArgs) => {
   const tmdb = new Tmdb({ apiKey: process.env.TMDB_API_KEY })
   const details = await tmdb.movie.getDetails(Number(params.movieId))
   const credits = await tmdb.movie.getCredits(Number(params.movieId))
+  // TODO add release dates (which includes certs, R, PG, etc...)
+  //const releaseDates = await tmdb.movie.getReleaseDates(Number(params.movieId))
   const recommendations = await tmdb.movie.getRecommendations(
     Number(params.movieId)
   )
@@ -42,29 +44,36 @@ export default function MoviePage() {
             </div>
           </div>
 
-          <div className={classNames(['md:col-span-3 p-4'])}>
-            <h1 className="text-5xl mb-6 font-extrabold">{details.title}</h1>
+          <div className={classNames(['md:col-span-3'])}>
+            <div className="p-4 border-b border-gray-700 ">
+              <h1 className="text-5xl font-extrabold">{details.title}</h1>
+              {details.tagline && (
+                <p className="mt-1 text-xl">{details.tagline}</p>
+              )}
+            </div>
 
-            <Grid
-              title="Cast"
-              items={credits.cast.map((cast) => {
-                const img = cast.profile_path
-                  ? {
-                      src: cast.profile_path,
-                      size: 'w300'
-                    }
-                  : undefined
+            <div className="p-4">
+              <Grid
+                title="Cast"
+                items={credits.cast.map((cast) => {
+                  const img = cast.profile_path
+                    ? {
+                        src: cast.profile_path,
+                        size: 'w300'
+                      }
+                    : undefined
 
-                return {
-                  img,
-                  title: cast.name,
-                  meta: cast.character,
-                  to: `/people/${cast.id}`
-                }
-              })}
-            />
+                  return {
+                    img,
+                    title: cast.name,
+                    meta: cast.character,
+                    to: `/people/${cast.id}`
+                  }
+                })}
+              />
 
-            <Crew crew={credits.crew} />
+              <Crew crew={credits.crew} />
+            </div>
           </div>
         </div>
       </div>

@@ -43,6 +43,7 @@ const Crew: React.FC<{ crew: CrewMember[] }> = ({ crew }) => {
           jobs.includes(crewMember.job)
         )
 
+        if (!crewMembers.length) return <React.Fragment />
         return <Department department={department} crew={crewMembers} />
       })}
     </>

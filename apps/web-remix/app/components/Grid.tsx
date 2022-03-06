@@ -39,8 +39,8 @@ const Grid: React.FC<GridProps> = ({ title, items }) => {
 
       <div
         className={classNames([
-          'grid gap-2',
-          'grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7'
+          'grid gap-4',
+          'grid-cols-2 md:grid-cols-4 lg:grid-cols-5'
         ])}
       >
         {itemsWithSrc.map((item) => (
