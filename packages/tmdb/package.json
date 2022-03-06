@@ -1,0 +1,36 @@
+{
+  "version": "0.0.8",
+  "name": "tmdb",
+  "author": "Josh Medeski<josh@medeskisolutions.com>",
+  "license": "MIT",
+  "description": "A TypeScript API for working with The Movie Database API (tmdb)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/medeskisolutions/tmdb-ts-api.git"
+  },
+  "keywords": [
+    "api",
+    "tmbd",
+    "typescript"
+  ],
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^3.1.1",
+    "@types/jest": "^27.4.0",
+    "jest": "^27.4.7",
+    "prettier": "^2.5.1",
+    "ts-jest": "^27.1.3",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "axios": "^0.25.0",
+    "dotenv": "^14.2.0",
+    "tiny-invariant": "^1.2.0"
+  }
+}
