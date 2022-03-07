@@ -28,6 +28,7 @@ export const PosterImg: React.FC<{
       <InnerImageZoom
         src={`https://image.tmdb.org/t/p/${size}` + src}
         zoomSrc={`https://image.tmdb.org/t/p/original` + src}
+        hideHint={true}
       />
     )
   } else {
