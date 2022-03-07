@@ -5,28 +5,25 @@ import invariant from 'tiny-invariant'
 import Crew from '~/components/Crew'
 import Grid, { Row } from '~/components/Grid'
 import { useInferredRouteData } from '~/remix-extended'
-import { Tmdb } from 'tmdb'
 import { PosterImg } from '~/ui/Img'
 
 import styles from 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
+import { Db } from '~/utils/db'
 
 export const links = () => [{ rel: 'stylesheet', href: styles }]
 
 export const loader = async ({ params }: LoaderArgs) => {
   invariant(params.movieId, 'expected params.movieId')
-  const tmdb = new Tmdb({ apiKey: process.env.TMDB_API_KEY })
-  const details = await tmdb.movie.getDetails(Number(params.movieId))
-  const credits = await tmdb.movie.getCredits(Number(params.movieId))
-  // TODO add release dates (which includes certs, R, PG, etc...)
-  //const releaseDates = await tmdb.movie.getReleaseDates(Number(params.movieId))
-  const recommendations = await tmdb.movie.getRecommendations(
-    Number(params.movieId)
-  )
-  return { details, credits, recommendations }
+  const db = new Db()
+  const id = Number(params.movieId)
+  const details = db.movie.getDetails(id)
+  const credits = db.movie.getCredits(id)
+  const recommendations = db.movie.getRecommendations(id)
+  return await Promise.all([details, credits, recommendations])
 }
 
 export default function MoviePage() {
-  const { details, credits, recommendations } =
+  const [details, credits, recommendations] =
     useInferredRouteData<typeof loader>()
 
   return (
@@ -48,7 +45,7 @@ export default function MoviePage() {
             <div className="p-4 border-b border-gray-700 ">
               <h1 className="text-5xl font-extrabold">{details.title}</h1>
               {details.tagline && (
-                <p className="mt-1 text-xl">{details.tagline}</p>
+                <p className="mt-1 text-xl italic">{details.tagline}</p>
               )}
             </div>
 

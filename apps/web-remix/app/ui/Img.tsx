@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import { PosterSize, ProfileSize } from 'tmdb'
 import InnerImageZoom from 'react-inner-image-zoom'
-import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
 
 const Img: React.FC<
   React.DetailedHTMLProps<
@@ -13,7 +12,7 @@ const Img: React.FC<
     <img
       alt={alt}
       src={`https://image.tmdb.org/t/p/${size}` + src}
-      className={classNames(['w-full h-auto'])}
+      className={classNames(['max-w-full h-auto'])}
     />
   )
 }

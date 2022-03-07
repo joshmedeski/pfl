@@ -27,33 +27,35 @@ const Homepage: React.FC = () => {
   const { popularMovies, popularTv } = useLoaderData<LoaderData>()
 
   return (
-    <div className="p-4">
-      <Grid
-        title="Popular Movies"
-        items={popularMovies.results.map((result) => ({
-          img: {
-            src: result.poster_path,
-            size: 'w300'
-          },
-          title: result.title,
-          meta: String(new Date(result.release_date).getFullYear()),
-          to: `/movies/${result.id}`
-        }))}
-      />
+    <>
+      <div className="p-4">
+        <Grid
+          title="Popular Movies"
+          items={popularMovies.results.map((result) => ({
+            img: {
+              src: result.poster_path,
+              size: 'w300'
+            },
+            title: result.title,
+            meta: String(new Date(result.release_date).getFullYear()),
+            to: `/movies/${result.id}`
+          }))}
+        />
 
-      <Grid
-        title="Popular TV"
-        items={popularTv.results.map((result) => ({
-          img: {
-            src: result.poster_path,
-            size: 'w300'
-          },
-          title: result.name,
-          meta: String(new Date(result.first_air_date).getFullYear()),
-          to: `/tv/${result.id}`
-        }))}
-      />
-    </div>
+        <Grid
+          title="Popular TV"
+          items={popularTv.results.map((result) => ({
+            img: {
+              src: result.poster_path,
+              size: 'w300'
+            },
+            title: result.name,
+            meta: String(new Date(result.first_air_date).getFullYear()),
+            to: `/tv/${result.id}`
+          }))}
+        />
+      </div>
+    </>
   )
 }
 
